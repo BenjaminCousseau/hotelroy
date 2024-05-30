@@ -48,6 +48,12 @@
             echo "<form action='logout.php' method='post'>";
             echo "<button type='submit' class='btn btn-danger'>Se déconnecter</button>";
             echo "</form>";
+
+            //------------------------------------------------------------------------------------------------------
+            echo "<form action='historique.php' method='post'>";
+            echo "<button type='submit' class='btn btn-danger'>Mes réservations</button>";
+            echo "</form>";
+            //------------------------------------------------------------------------------------------------------
         } else {
             // Redirigez l'utilisateur vers la page de connexion s'il n'est pas connecté
             header("Location: login.php");
