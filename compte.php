@@ -33,10 +33,6 @@
                     echo "<p>Réservation: " . $row["reservation"] . "</p>";
                     echo "<p>Date: " . $row["date"] . "</p>";
                     // Vous pouvez ajouter d'autres champs de la table login que vous souhaitez afficher
-
-                    echo "<form action='cancel_reservation.php' method='post'>";
-                    echo "<button type='submit' class='btn btn-danger'>Résilier la réservation</button>";
-                    echo "</form>";
                 }
             } else {
                 echo "Aucune donnée trouvée pour cet utilisateur.";
