@@ -20,15 +20,22 @@ if(isset($_SESSION['username'])) {
         if ($conn->query($update_sql) === TRUE) {
             // Insertion de la réservation dans la table 'login'
             $insert_sql = "UPDATE login SET reservation='$room_number', date='$reservation_date' WHERE user='$username'";
+            //---------------------------------------------------------------------------------------------------------------------------------------------------
             if ($conn->query($insert_sql) === TRUE) {
-                echo "<div class='container'><p>Réservation réussie pour la chambre numéro $room_number.</p></div>";
+                // Insertion de l'historique de réservation
+                $insert_historique_sql = "INSERT INTO historique (user, chambre, date) VALUES ('$username', '$room_number', '$reservation_date')";
+                if ($conn->query($insert_historique_sql) === TRUE) {
+            //---------------------------------------------------------------------------------------------------------------------------------------------------
+                    echo "<div class='container'><p>Réservation réussie pour la chambre numéro $room_number.</p></div>";
+                } else {
+                    echo "Erreur lors de l'insertion dans l'historique: " . $conn->error;
+                }
             } else {
                 echo "Erreur lors de l'insertion de la réservation: " . $conn->error;
             }
         } else {
             echo "Erreur lors de la mise à jour de la disponibilité de la chambre: " . $conn->error;
         }
-
         $conn->close();
     } else {
         echo "<div class='container'><p>Erreur: Aucune chambre sélectionnée pour la réservation.</p></div>";
